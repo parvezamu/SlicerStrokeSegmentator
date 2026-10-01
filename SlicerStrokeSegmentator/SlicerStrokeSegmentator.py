@@ -94,7 +94,7 @@ class SlicerStrokeSegmentatorLogic(ScriptedLoadableModuleLogic):
 
             # Use nnUNetv2_predict script directly
             slicerBinDir = os.path.dirname(slicer.app.applicationFilePath())
-            predictScript = os.path.join(slicerBinDir, "lib", "Python", "bin", "nnUNetv2_predict")
+            predictScript = os.path.join(os.path.dirname(slicerBinDir), "lib", "Python", "bin", "nnUNetv2_predict")
             pythonPath = os.path.join(slicerBinDir, "PythonSlicer")
 
             env = os.environ.copy()
