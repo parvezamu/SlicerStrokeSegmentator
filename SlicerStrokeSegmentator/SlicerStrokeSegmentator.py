@@ -23,7 +23,6 @@ class SlicerStrokeSegmentatorWidget(ScriptedLoadableModuleWidget):
         self.inputSelector = slicer.qMRMLNodeComboBox()
         self.inputSelector.nodeTypes = ["vtkMRMLScalarVolumeNode"]
         self.inputSelector.setMRMLScene(slicer.mrmlScene)
-        self.inputSelector.toolTip = "Select T1w MRI registered to MNI152 1mm space"
         formLayout.addRow("Input T1w (MNI152):", self.inputSelector)
         self.layout.addLayout(formLayout)
         self.downloadBtn = qt.QPushButton("Download Model (~1.2 GB, one-time)")
@@ -88,27 +87,27 @@ class SlicerStrokeSegmentatorLogic(ScriptedLoadableModuleLogic):
             inDir = os.path.join(tmpDir, "input")
             outDir = os.path.join(tmpDir, "output")
             os.makedirs(inDir); os.makedirs(outDir)
+
+            # Export input — nnUNet expects _0000 suffix
             inPath = os.path.join(inDir, "volume_0000.nii.gz")
             slicer.util.exportNode(inputNode, inPath)
 
-            pythonPath = os.path.join(
-                os.path.dirname(slicer.app.applicationFilePath()), "PythonSlicer"
-            )
-
-            # Use full model path directly — avoids nnUNet_results env var conflicts
-            modelPath = os.path.join(self.modelDir(), MODEL_SUBDIR)
+            # Use nnUNetv2_predict script directly
+            slicerBinDir = os.path.dirname(slicer.app.applicationFilePath())
+            predictScript = os.path.join(slicerBinDir, "lib", "Python", "bin", "nnUNetv2_predict")
+            pythonPath = os.path.join(slicerBinDir, "PythonSlicer")
 
             env = os.environ.copy()
             env["nnUNet_results"] = self.modelDir()
 
             cmd = [
-                pythonPath, "-m", "nnunetv2.inference.predict_from_raw_data",
+                pythonPath, predictScript,
                 "-i", inDir, "-o", outDir,
-                "-m", modelPath,          # pass full path directly
-                "-c", "3d_fullres",
+                "-d", "Dataset001_StrokeT1w",
+                "-tr", "nnUNetTrainerImprovedLossCheckpoints",
+                "-p", "nnUNetPlans", "-c", "3d_fullres",
                 "-f", "0", "1", "2", "3", "4",
-                "-device", "cpu",
-                "--disable_tta",
+                "-device", "cpu", "--disable_tta",
                 "-npp", "1", "-nps", "1",
             ]
             result = subprocess.run(cmd, env=env, capture_output=True, text=True)
@@ -117,7 +116,7 @@ class SlicerStrokeSegmentatorLogic(ScriptedLoadableModuleLogic):
 
             outFiles = [f for f in os.listdir(outDir) if f.endswith(".nii.gz")]
             if not outFiles:
-                raise RuntimeError("No output file produced.")
+                raise RuntimeError(f"No output file produced.\nstdout:{result.stdout[-500:]}\nstderr:{result.stderr[-500:]}")
             segNode = slicer.util.loadSegmentation(os.path.join(outDir, outFiles[0]))
             segNode.SetName(f"{inputNode.GetName()}_stroke_lesion")
             return segNode
