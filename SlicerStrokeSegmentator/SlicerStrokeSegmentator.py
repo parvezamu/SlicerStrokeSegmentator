@@ -3,7 +3,6 @@ import qt, slicer
 from slicer.ScriptedLoadableModule import *
 
 MODEL_REPO = "parvezamu/stroke-lesion-segmentation"
-MODEL_SUBDIR = "Dataset001_StrokeT1w/nnUNetTrainerImprovedLossCheckpoints__nnUNetPlans__3d_fullres"
 
 class SlicerStrokeSegmentator(ScriptedLoadableModule):
     def __init__(self, parent):
@@ -13,7 +12,6 @@ class SlicerStrokeSegmentator(ScriptedLoadableModule):
         self.parent.dependencies = []
         self.parent.contributors = ["Parvez Ahmad (Auckland Bioengineering Institute)"]
         self.parent.helpText = "Automated chronic ischemic stroke lesion segmentation on T1w MRI registered to MNI152 1mm space."
-        self.parent.acknowledgementText = "HRC grant 21/144 IMPRESS, University of Auckland."
 
 class SlicerStrokeSegmentatorWidget(ScriptedLoadableModuleWidget):
     def setup(self):
@@ -104,7 +102,6 @@ class SlicerStrokeSegmentatorLogic(ScriptedLoadableModuleLogic):
                 pythonPath, predictScript,
                 "-i", inDir, "-o", outDir,
                 "-d", "Dataset001_StrokeT1w",
-                "-tr", "nnUNetTrainerImprovedLossCheckpoints",
                 "-p", "nnUNetPlans", "-c", "3d_fullres",
                 "-f", "0", "1", "2", "3", "4",
                 "-device", "cpu", "--disable_tta",

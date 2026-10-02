@@ -5,7 +5,7 @@
   "depends": "",
   "homepage": "https://github.com/parvezamu/SlicerStrokeSegmentator",
   "status": "",
-  "description": "Automated chronic ischemic stroke lesion segmentation on T1-weighted MRI using nnUNet with automatic MNI152 registration. Input must be T1w MRI registered to MNI152 1mm space.",
+  "description": "Automated chronic ischemic stroke lesion segmentation on T1-weighted MRI. Input must be T1w MRI registered to MNI152 1mm isotropic space. Model weights available upon request.",
   "screenshoturls": "",
   "enabled": 1,
   "contributors": "Parvez Ahmad (Auckland Bioengineering Institute, University of Auckland)",
