@@ -13,7 +13,7 @@
 
 ## Model Access
 Model weights are currently available upon request pending paper submission.
-Contact: p.ahmad@auckland.ac.nz
+Contact:pahm409@aucklanduni.ac.nz/parvezamu@gmail.com
 
 Model will be made publicly available upon paper submission.
 
