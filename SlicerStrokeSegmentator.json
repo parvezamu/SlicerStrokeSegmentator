@@ -5,11 +5,11 @@
   "depends": "",
   "homepage": "https://github.com/parvezamu/SlicerStrokeSegmentator",
   "status": "",
-  "description": "Automated chronic ischemic stroke lesion segmentation on T1-weighted MRI. Input must be T1w MRI registered to MNI152 1mm isotropic space. Model weights available upon request.",
-  "screenshoturls": "",
+  "description": "Automated chronic ischemic stroke lesion segmentation on T1-weighted MRI registered to MNI152 1 mm isotropic space. Model weights are available upon request.",
+  "screenshoturls": "https://raw.githubusercontent.com/parvezamu/SlicerStrokeSegmentator/main/SlicerStrokeSegmentator/Resources/Screenshots/StrokeSegmentator.png",
   "enabled": 1,
   "contributors": "Parvez Ahmad (Auckland Bioengineering Institute, University of Auckland)",
   "acknowledgements": "HRC grant 21/144 IMPRESS",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "category": "Segmentation"
 }
