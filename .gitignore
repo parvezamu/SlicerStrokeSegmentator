@@ -1,0 +1,10 @@
+
+# Python generated files
+__pycache__/
+*.pyc
+*.pyo
+
+# Private model weights
+*.pth
+*.pt
+*.ckpt
