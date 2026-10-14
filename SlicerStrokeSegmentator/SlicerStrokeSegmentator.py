@@ -3,6 +3,7 @@ import qt, slicer
 from slicer.ScriptedLoadableModule import *
 
 MODEL_REPO = "parvezamu/stroke-lesion-segmentation"
+MODEL_SUBDIR = "Dataset001_StrokeT1w/nnUNetTrainerImprovedLossCheckpoints__nnUNetPlans__3d_fullres"
 
 class SlicerStrokeSegmentator(ScriptedLoadableModule):
     def __init__(self, parent):
