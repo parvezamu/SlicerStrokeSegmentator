@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3...3.19.7 FATAL_ERROR)
 
-project(SlicerStrokeSegmentator)
+project(StrokeSegmentator)
 
 set(EXTENSION_HOMEPAGE "https://github.com/parvezamu/SlicerStrokeSegmentator")
 set(EXTENSION_CATEGORY "Segmentation")
