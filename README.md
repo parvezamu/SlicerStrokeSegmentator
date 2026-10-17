@@ -4,7 +4,7 @@ Pretrained nnU-Net v2 models for automated chronic ischemic stroke lesion segmen
 
 The models can be used with the existing NNUNet extension for 3D Slicer, allowing researchers to generate lesion segmentations and visualize the results directly in Slicer.
 
-![Stroke lesion segmentation in 3D Slicer](SlicerStrokeSegmentator/Resources/Screenshots/StrokeSegmentator.png)
+![SlicerStrokeSegmentator screenshot](SlicerStrokeSegmentator/Resources/Screenshots/StrokeSegmentator.png)
 
 The model repository includes five trained checkpoints, the nnU-Net configuration files, and the custom BCE+Dice trainer required for model loading.
 
@@ -225,4 +225,13 @@ HRC grant 21/144 IMPRESS.
 
 ## License
 
+
+
 The separate SlicerStrokeSegmentator extension source code is released under the Apache License, Version 2.0, as specified in its source repository. That license should not automatically be assumed to apply to the pretrained model weights.
+
+### Successful inference in 3D Slicer
+
+The following screenshot shows the predicted chronic stroke lesion segmentation
+overlaid on the T1-weighted MRI (`A207_T1w`) in axial, coronal, and sagittal views.
+
+![Five-fold chronic stroke lesion segmentation using nnU-Net v2 in 3D Slicer](SlicerStrokeSegmentator/Resources/Screenshots/StrokeSegmentator.png)
